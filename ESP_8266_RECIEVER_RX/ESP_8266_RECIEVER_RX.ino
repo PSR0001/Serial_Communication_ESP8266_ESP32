@@ -12,6 +12,9 @@ Servo myservo;
 // Function prototype
 void rgb(int red, int green, int blue);
 
+
+
+
 // Global Varible
 char incomingByte; // for incoming serial data
 int pos = 0; 
@@ -70,3 +73,29 @@ delay(500);
 //    analogWrite(G, green);
 //    analogWrite(B, blue);
 //}
+
+//hex to decimal converter function
+int hexToDec(String hexVal)
+{
+    int len = hexVal.length();
+    int base = 1, i = 0;
+    int dec_val = 0;
+
+    for (i = 0; hexVal[i] != '\0'; i++){
+        if (hexVal[i] >= 'a' && hexVal[i] <= 'z')
+            hexVal[i] = hexVal[i] - 32;
+    }
+    for (int i = len - 1; i >= 0; i--){
+        if (hexVal[i] >= '0' && hexVal[i] <= '9')
+        {
+            dec_val += (int(hexVal[i]) - 48) * base;
+            // incrementing base by power
+            base = base * 16;
+        }
+        else if (hexVal[i] >= 'A' && hexVal[i] <= 'F'){
+            dec_val += (int(hexVal[i]) - 55) * base;
+            base = base * 16;
+        }
+    }
+    return dec_val;
+}
