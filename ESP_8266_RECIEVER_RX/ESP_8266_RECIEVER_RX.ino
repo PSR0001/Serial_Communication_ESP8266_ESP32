@@ -34,6 +34,9 @@ char * RGB[8]={
 //void setup
 void setup() { 
     USE_SERIAL.begin(115200); // opens serial port, sets data rate to 115200 bps
+    pinMode(R, OUTPUT);
+    pinMode(G, OUTPUT);
+    pinMode(B, OUTPUT);
     myservo.attach(2); //D4
     myservo.write(0);
     delay(1000);
